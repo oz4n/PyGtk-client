@@ -17,6 +17,14 @@ The clients are located in the sys tray and can be called any time.
  * PyNotify
  * [ImageMagick](http://www.imagemagick.org)
 
+## What I have to do?
+
+Before using this application, you will need an API KEY. To get one, go to [Litch.in](http://litch.in) and create an account.
+
+After the creation completed, you will have access to your API KEY, copy it and edit the file located at ~/.litchin/conf.json (created at the first run of this application). Fill the "api_key" value with what you just copied and the application should work.
+
+We will implement a "Configuration" Dialog in the future, to make it easy to add your API KEY. We're working on it :) 
+
 ## Tested?
 
 Yup, but so far, only on Fedora 15 with Gnome 3.

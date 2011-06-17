@@ -61,7 +61,7 @@ class LitchInTray:
         if not os.path.exists(config_file):
             config = {
                 'server': 'http://litch.in/',
-                'user_token': '',
+                'api_key': '',
                 'proxy': ''
             }
             f = open(config_file, 'w')
@@ -73,7 +73,7 @@ class LitchInTray:
         f.close()
         
         self.server = config['server']
-        self.user_token = config['user_token']
+        self.api_key = config['api_key']
         self.proxy = config['proxy']
 
     def __file_exists(self, path):
@@ -101,8 +101,8 @@ class LitchInTray:
         n.show()
 
     def take_action(self, widget, event, data = None):
-        if self.user_token == '':
-            self.__show_message("User Token Required", "You first need to define your user_token in the .litchin/conf.json file.")
+        if self.api_key == '':
+            self.__show_message("Api key required", "You first need to define your api_key in the .litchin/conf.json file.")
             return
         
         file_path = self.__get_path()
@@ -118,7 +118,7 @@ class LitchInTray:
             self.__show_message("Error occured", "An error occured while creating the file.")
             return
 
-        params = {'token': self.user_token, 'image': open(file_path, 'rb')}
+        params = {'api_key': self.api_key, 'image': open(file_path, 'rb')}
 
         opener = urllib2.build_opener(MultipartPostHandler.MultipartPostHandler)
         urllib2.install_opener(opener)

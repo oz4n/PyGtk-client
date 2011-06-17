@@ -11,6 +11,7 @@ import gtk
 import os
 import pynotify
 import urllib2
+from urllib2 import URLError, HTTPError
 import simplejson
 import MultipartPostHandler
 
@@ -89,7 +90,7 @@ class LitchInTray:
     def __get_path(self):
         i = 0
         while(True):
-            path = "/tmp/shot%s.png" % (i,)
+            path = "/tmp/shot%s.jpg" % (i,)
             if not self.__file_exists(path):
                 return path
             i += 1
@@ -127,7 +128,11 @@ class LitchInTray:
         if self.proxy != "":
             req.set_proxy(self.proxy, 'http')
 
-        response = simplejson.loads(urllib2.urlopen(req).read().strip())
+        try:
+            response = simplejson.loads(urllib2.urlopen(req).read().strip())
+        except HTTPError, URLError:
+            self.__show_message("Server inactive", "The server seems to be down.")
+            return
 
         if response['success']:
             clipboard = gtk.clipboard_get()

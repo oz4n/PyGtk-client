@@ -61,7 +61,7 @@ class LitchInTray:
 
         if not os.path.exists(config_file):
             config = {
-                'server': 'http://litch.in/',
+                'server': 'http://litch.in/api/v1/',
                 'api_key': '',
                 'proxy': ''
             }
@@ -109,11 +109,11 @@ class LitchInTray:
         file_path = self.__get_path()
         
         if data == "screen":
-            os.system("sleep 0.5 && import -window root %s" % (file_path,))
+            os.system("sleep 0.2 && import -window root > convert -resize '1310720@>' %s" % (file_path,))
         elif data == "window":
-            os.system("import -frame %s" % (file_path,))
+            os.system("import -frame > convert -resize '1310720@>' %s" % (file_path,))
         elif data == "area" or not data:
-            os.system("sleep 0.2 && import %s" % (file_path,))
+            os.system("sleep 0.5 && import > convert -resize '1310720@>' %s" % (file_path,))
         
         if not self.__file_exists(file_path):
             self.__show_message("Error occured", "An error occured while creating the file.")

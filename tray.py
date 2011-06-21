@@ -109,11 +109,11 @@ class LitchInTray:
         file_path = self.__get_path()
         
         if data == "screen":
-            os.system("sleep 0.2 && import -window root > convert -resize '1310720@>' %s" % (file_path,))
+            os.system("sleep 0.2 && scrot %s" % (file_path,))
         elif data == "window":
-            os.system("import -frame > convert -resize '1310720@>' %s" % (file_path,))
+            os.system("scrot -s -b %s" % (file_path,))
         elif data == "area" or not data:
-            os.system("sleep 0.5 && import > convert -resize '1310720@>' %s" % (file_path,))
+            os.system("scrot -s -b %s" % (file_path,))
         
         if not self.__file_exists(file_path):
             self.__show_message("Error occured", "An error occured while creating the file.")

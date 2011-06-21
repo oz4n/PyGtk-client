@@ -15,7 +15,7 @@ The clients are located in the sys tray and can be called any time.
  * Python (of course)
  * GTK
  * PyNotify
- * [ImageMagick](http://www.imagemagick.org)
+ * Scrot (for the screen capture)
 
 ## What I have to do?
 
